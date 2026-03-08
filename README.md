@@ -50,12 +50,6 @@ ensure krs_pausemenu
 
 * **Default Key**: `ESCAPE` (This can be remapped by the player in the FiveM Keybind settings).
 
-## 📂 Project Structure
-
-* `client/`: Client-side logic and NUI callback handling.
-* `server/`: Database data retrieval and logout events.
-* `web/`: React source code, Mantine components, and Vite configuration.
-
 ---
 
 ## 🤝 Support & Community
