@@ -63,6 +63,4 @@ For help, bug reports, or to join the community:
 
 *Developed with ❤️ by Krs Scripts*
 
-Would you like me to help you with the **GitHub "Release"** process or how to set up the `.gitignore` file to avoid uploading unnecessary `node_modules`?
-
 ```
