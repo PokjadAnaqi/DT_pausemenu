@@ -61,5 +61,3 @@ For help, bug reports, or to join the community:
 ---
 
 *Developed with ❤️ by Krs Scripts*
-
-```
