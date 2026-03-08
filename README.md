@@ -3,7 +3,6 @@
 
 **KRS Pausemenu** is a modern, elegant, and high-performance pause menu replacement for FiveM servers. Built with **React** and **Mantine UI**, it replaces the standard GTA V menu with a clean interface, providing players with a quick overview of their character details, map preview, settings, and community links.
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)
 ![Mantine](https://img.shields.io/badge/Mantine-339AF0?style=flat&logo=mantine&logoColor=white)
 
