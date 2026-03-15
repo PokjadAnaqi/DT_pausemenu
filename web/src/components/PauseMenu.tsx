@@ -27,7 +27,7 @@ interface PauseMenuProps {
 const PlayerInfoRow = ({ icon, label, value }: { icon: any, label: string, value: string | number }) => (
   <Group justify="space-between" wrap="nowrap" p="xs" style={{ backgroundColor: "rgba(255, 255, 255, 0.05)", borderRadius: "8px" }}>
     <Group gap="sm">
-      <ThemeIcon variant="filled" color="#B7FF00" size={28} radius={6}>
+      <ThemeIcon variant="filled" color="#0496ff" size={28} radius={6}>
         {React.cloneElement(icon, { size: 16, color: "#1A1B1E" })}
       </ThemeIcon>
       <Text fw={600} size="sm" c="white">{label}:</Text>
@@ -65,7 +65,7 @@ export default function AppComp({ playerData, setVisible }: PauseMenuProps) {
   };
 
   return (
-    <Box style={{ height: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(0, 0, 0, 0.15)", position: 'relative' }}>
+    <Box style={{ height: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(0, 0, 0, 0.56)", position: 'relative' }}>
       
       {showLogoutConfirm && (
         <Overlay color="#1f1f1f00" backgroundOpacity={0.2} blur={5} zIndex={100}>
@@ -76,18 +76,18 @@ export default function AppComp({ playerData, setVisible }: PauseMenuProps) {
               style={{ backgroundColor: "rgba(255, 255, 255, 0.08)", border: "1px solid rgba(183, 255, 0, 0.01)", width: 420 }}
             >
               <Stack align="center" gap="md">
-                <ThemeIcon size={60} radius="xl" color="#B7FF00" variant="light">
-                  <TbAlertHexagonFilled size={35} color="#B7FF00" />
+                <ThemeIcon size={60} radius="xl" color="#0496ff" variant="light">
+                  <TbAlertHexagonFilled size={35} color="#0496ff" />
                 </ThemeIcon>
                 
                 <Stack gap={0} align="center">
-                  <Text c="white" fw={800} size="xl" tt="uppercase">Logout Dialog</Text>
+                  <Text c="white" fw={800} size="xl" tt="uppercase">Logout</Text>
                   <Text c="dimmed" size="sm" ta="center">Are you sure you want to log out of the session?</Text>
                 </Stack>
 
                 <Group grow w="100%" mt="lg">
                   <Button 
-                    color="#B7FF00"
+                    color="#0496ff"
                     radius="md"
                     onClick={() => setShowLogoutConfirm(false)}
                     styles={{ label: { color: '#1A1B1E' } }}
@@ -95,7 +95,7 @@ export default function AppComp({ playerData, setVisible }: PauseMenuProps) {
                     Cancel
                   </Button>
                   <Button 
-                    color="#B7FF00"
+                    color="#0496ff"
                     radius="md"
                     styles={{ label: { color: '#1A1B1E' } }}
                     onClick={handleConfirmLogout}
@@ -111,7 +111,7 @@ export default function AppComp({ playerData, setVisible }: PauseMenuProps) {
 
       <Box w={950} style={{ opacity: showLogoutConfirm ? 0.3 : 1, transition: 'opacity 0.2s ease' }}>
         <Group mb={40} justify="center">
-          <BiSolidBadgeCheck color="#B7FF00" size={40} />
+          <BiSolidBadgeCheck color="#0496ff" size={40} />
           <Text fw={900} size={rem(36)} c="white" style={{ letterSpacing: rem(2), textTransform: 'uppercase' }}>
             Krs Scripts
           </Text>
@@ -131,7 +131,7 @@ export default function AppComp({ playerData, setVisible }: PauseMenuProps) {
             />
             <Box style={{ position: 'absolute', top: 15, left: 15, background: 'rgba(255, 255, 255, 0.08)', padding: '6px 14px', borderRadius: '10px'}}>
               <Group gap={8}>
-                <IconMapPin size={14} color="#B7FF00" />
+                <IconMapPin size={14} color="#0496ff" />
                 <Text fw={800} c="white" size="xs" tt="uppercase">Map View</Text>
               </Group>
             </Box>
@@ -148,7 +148,7 @@ export default function AppComp({ playerData, setVisible }: PauseMenuProps) {
             }}
           >
             <Group gap="sm" mb="xl">
-              <IconUser size={26} color="#B7FF00" />
+              <IconUser size={26} color="#0496ff" />
               <Text fw={800} c="white" size="xl" tt="uppercase">
                 Character Details
               </Text>
@@ -171,7 +171,7 @@ export default function AppComp({ playerData, setVisible }: PauseMenuProps) {
             icon={<IconSettings />}
             title="Settings"
             subtitle="Configurations"
-            color="#B7FF00"
+            color="#0496ff"
             onClick={() => fetchNui("settings")}
           />
 
@@ -179,7 +179,7 @@ export default function AppComp({ playerData, setVisible }: PauseMenuProps) {
             icon={<FaDiscord />}
             title="Discord"
             subtitle="Join our community"
-            color="#B7FF00"
+            color="#0496ff"
             onClick={() =>
               (window as any).invokeNative("openUrl", "https://discord.gg/CqfzJXvKvk")
             }
@@ -189,7 +189,7 @@ export default function AppComp({ playerData, setVisible }: PauseMenuProps) {
             icon={<IconLogout />}
             title="Logout"
             subtitle="Quit Session"
-            color="#B7FF00"
+            color="#0496ff"
             onClick={() => setShowLogoutConfirm(true)}
           />
         </SimpleGrid>

@@ -30,17 +30,18 @@ RegisterNUICallback('hide-ui', function(data, cb)
     cb('ok')
 end)
 
-CreateThread(function()
+local function updatePauseMenu()
     while true do
         Wait(0)
-        if pauseMenuActive then
-            DisableControlAction(1, 200, true)
-            if IsPauseMenuActive() then
-                SetPauseMenuActive(false)
-            end
+        DisableControlAction(1, 200, true)
+        if IsPauseMenuActive() then
+            TriggerScreenblurFadeOut(0)
+            pauseMenuActive = false
         end
     end
-end)
+end
+
+CreateThread(updatePauseMenu)
 
 lib.addKeybind({
     name = 'PauseMenu',
