@@ -1,6 +1,5 @@
 
-<img width="1919" height="1078" alt="Screenshot 2026-03-08 190843" src="https://github.com/user-attachments/assets/3a71f1c9-4892-4889-9828-a8c0dcea18fe" />
-<img width="1919" height="1079" alt="Screenshot 2026-03-08 190605" src="https://github.com/user-attachments/assets/e03ec5ce-b83d-42b1-95a2-36bdb45602de" />
+
 
 
 # KRS PAUSEMENU 🎮
