@@ -1,6 +1,7 @@
 local pauseMenuActive = false
 
 local function openPauseMenu()
+    if LocalPlayer.state.invOpen then return end
     local data = lib.callback.await('krs_pausemenu:getPlayerData', 100)
     if data then
         SendNUIMessage({action = 'setVisible', data = true})
