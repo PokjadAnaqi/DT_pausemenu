@@ -1,6 +1,6 @@
 
 
-lib.callback.register('krs_pausemenu:getPlayerData', function(source)
+lib.callback.register('DT_pausemenu:getPlayerData', function(source)
     local Player = exports.qbx_core:GetPlayer(source)
     if not Player then return nil end
 
@@ -20,7 +20,7 @@ lib.callback.register('krs_pausemenu:getPlayerData', function(source)
     }
 end)
 
-RegisterNetEvent("krs_pausemenu:exitGame", function()
+RegisterNetEvent("DT_pausemenu:exitGame", function()
     local src = source
     DropPlayer(src, '\n[Krs Scripts]\nThank you for playing. You have left the server.')
 end)
