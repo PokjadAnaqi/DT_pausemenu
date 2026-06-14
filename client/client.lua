@@ -2,9 +2,9 @@ local pauseMenuActive = false
 
 local function openPauseMenu()
     if LocalPlayer.state.invOpen then return end
-    local data = lib.callback.await('krs_pausemenu:getPlayerData', 100)
+    local data = lib.callback.await('DT_pausemenu:getPlayerData', 100)
     if data then
-        SendNUIMessage({action = 'setVisible', data = true})
+        SendNUIMessage({ action = 'setVisible', data = true })
         SendNUIMessage({
             action = 'updatePlayerData',
             data = {
@@ -15,7 +15,12 @@ local function openPauseMenu()
                 bank = data.balance,
                 wallet = data.wallet,
                 dirty = data.dirtyMoney,
-                mapImage = Config.ImageMap
+                mapImage = Config.ImageMap,
+                logo = Config.Logo,
+                currencySymbol = Config.CurrencySymbol,
+                dirtySymbol = Config.DirtySymbol,
+                discordLink = Config.DiscordLink,
+                actions = Config.Actions
             }
         })
         SetNuiFocus(true, true)
@@ -29,6 +34,30 @@ RegisterNUICallback('hide-ui', function(data, cb)
     SetNuiFocus(false, false)
     pauseMenuActive = false
     cb('ok')
+end)
+
+RegisterNUICallback("action", function(data, cb)
+    pauseMenuActive = false
+
+    SetNuiFocus(false, false)
+    TriggerScreenblurFadeOut(0)
+
+    SendNUIMessage({
+        action = "setVisible",
+        data = false
+    })
+
+    if data.type == "client" then
+        TriggerEvent(data.event)
+
+    elseif data.type == "server" then
+        TriggerServerEvent(data.event)
+
+    elseif data.type == "command" then
+        ExecuteCommand(data.event)
+    end
+
+    cb("ok")
 end)
 
 local function updatePauseMenu()
@@ -59,7 +88,7 @@ RegisterNUICallback('map', function(data, cb)
     pauseMenuActive = false
     SetNuiFocus(false, false)
     TriggerScreenblurFadeOut(0)
-    SendNUIMessage({action = 'setVisible', data = false})
+    SendNUIMessage({ action = 'setVisible', data = false })
     cb('ok')
     ActivateFrontendMenu("FE_MENU_VERSION_MP_PAUSE", true, -1)
 end)
@@ -68,7 +97,7 @@ RegisterNUICallback('settings', function(data, cb)
     pauseMenuActive = false
     SetNuiFocus(false, false)
     TriggerScreenblurFadeOut(0)
-    SendNUIMessage({action = 'setVisible', data = false})
+    SendNUIMessage({ action = 'setVisible', data = false })
     cb('ok')
     ActivateFrontendMenu(GetHashKey('FE_MENU_VERSION_LANDING_MENU'), 0, -1)
 end)
@@ -81,8 +110,8 @@ RegisterNUICallback('logout', function(data, cb)
     lib.print.info("Logout confirmed via UI")
     SetNuiFocus(false, false)
     TriggerScreenblurFadeOut(0)
-    SendNUIMessage({action = 'setVisible', data = false})
+    SendNUIMessage({ action = 'setVisible', data = false })
     pauseMenuActive = false
-    TriggerServerEvent("krs_pausemenu:exitGame")
+    TriggerServerEvent("DT_pausemenu:exitGame")
     cb('ok')
 end)
