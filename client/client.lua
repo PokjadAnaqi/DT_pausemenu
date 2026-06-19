@@ -1,10 +1,29 @@
 local pauseMenuActive = false
 
+local function ToggleExternalHud(state)
+    if GetResourceState('0r-hud-v3') == 'started' then
+        exports['0r-hud-v3']:ToggleVisible(state)
+    end
+
+    if GetResourceState('DT_temperature') == 'started' then
+        exports['DT_temperature']:ToggleVisible(state)
+    end
+end
+
 local function openPauseMenu()
     if LocalPlayer.state.invOpen then return end
+
     local data = lib.callback.await('DT_pausemenu:getPlayerData', 100)
+
     if data then
-        SendNUIMessage({ action = 'setVisible', data = true })
+
+        ToggleExternalHud(false)
+
+        SendNUIMessage({
+            action = 'setVisible',
+            data = true
+        })
+
         SendNUIMessage({
             action = 'updatePlayerData',
             data = {
@@ -20,19 +39,27 @@ local function openPauseMenu()
                 currencySymbol = Config.CurrencySymbol,
                 dirtySymbol = Config.DirtySymbol,
                 discordLink = Config.DiscordLink,
-                actions = Config.Actions
+                actions = Config.Actions,
+                locales = Config.Locales,
+                updates = Config.Updates,
             }
         })
+
         SetNuiFocus(true, true)
         TriggerScreenblurFadeIn(0)
         pauseMenuActive = true
+        DisplayRadar(false)
     end
 end
 
-RegisterNUICallback('hide-ui', function(data, cb)
+RegisterNUICallback('hide-ui', function(_, cb)
     TriggerScreenblurFadeOut(0)
     SetNuiFocus(false, false)
+
+    ToggleExternalHud(true)
+
     pauseMenuActive = false
+    DisplayRadar(true)
     cb('ok')
 end)
 
@@ -49,10 +76,8 @@ RegisterNUICallback("action", function(data, cb)
 
     if data.type == "client" then
         TriggerEvent(data.event)
-
     elseif data.type == "server" then
         TriggerServerEvent(data.event)
-
     elseif data.type == "command" then
         ExecuteCommand(data.event)
     end
